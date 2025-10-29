@@ -1,5 +1,3 @@
-**File: `database/README.md`**
-```markdown
 # Database Documentation
 
 ## Schema Overview
@@ -37,41 +35,20 @@ Security and compliance tracking.
 - **Tracking**: User actions, IP addresses, timestamps
 
 ## Entity Relationships
-
-```
 Users (1) → (N) Accounts (1) → (N) Transactions
-    ↓
-  (1) → (N) Audit Logs
-```
+↓
+(1) → (N) Audit Logs
+
 
 - **One-to-Many**: Users to Accounts
 - **One-to-Many**: Accounts to Transactions  
 - **One-to-Many**: Users to Audit Logs
-
-## Business Logic Supported
-
-### User Management
-- Registration and authentication
-- Role-based access control
-- Account status management
-
-### Account Operations
-- Balance tracking with constraints
-- Multiple account types per user
-- Account status lifecycle
-
-### Financial Transactions
-- Deposits and withdrawals
-- Inter-account transfers
-- Transaction status tracking
-- Audit references
 
 ## Setup
 
 ```sql
 -- Deploy complete schema
 SOURCE database/schema.sql;
-
 -- Load sample data (development)
 SOURCE database/seed.sql;
 ```
@@ -84,6 +61,7 @@ SOURCE database/seed.sql;
 - Referential integrity with cascading deletes
 - Balance validation constraints
 
+
 ## Sample Data
 
 Includes test users, accounts, and transactions for development:
@@ -91,7 +69,9 @@ Includes test users, accounts, and transactions for development:
 - Customer accounts with balances
 - Sample transaction history
 
----
+Customer accounts with balances
+
+Sample transaction history
 
 *Database schema version 1.0 - Designed for banking system compliance and scalability*
-```
+

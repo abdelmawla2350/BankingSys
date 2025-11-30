@@ -1,7 +1,7 @@
 -- Bank System Database Schema (Enhanced Version)
 -- Version: 1.1
 
--- Create database if it doesn't exist
+-- Create database if it doesn't exist and use it
 CREATE DATABASE IF NOT EXISTS bank_system;
 USE bank_system;
 

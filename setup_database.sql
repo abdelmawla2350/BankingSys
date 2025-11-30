@@ -1,7 +1,7 @@
 -- MySQL Database Setup Script for Banking System
 -- Run this script to set up the database properly
 
--- Create database if it doesn't exist
+-- Create database if it doesn't exist and use it
 CREATE DATABASE IF NOT EXISTS bank_system;
 USE bank_system;
 

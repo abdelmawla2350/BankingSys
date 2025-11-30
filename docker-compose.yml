@@ -1,0 +1,39 @@
+# Docker Compose Configuration for Banking System Database
+# ========================================================
+# This configuration sets up a MySQL 8.0 database container for the banking system.
+# The database is automatically initialized with the schema and sample data on first run.
+#
+# Services:
+# - mysql: MySQL 8.0 database server
+#   - Database name: bank_system
+#   - User: bankuser / securepassword
+#   - Root password: rootpassword
+#   - Port: 3306 (exposed to host)
+#   - Data persistence: mysql_data volume
+#   - Initialization: setup_database.sql script runs on first startup
+#   - Health check: Ensures database is ready before application starts
+
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: banking_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bank_system
+      MYSQL_USER: bankuser
+      MYSQL_PASSWORD: securepassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./setup_database.sql:/docker-entrypoint-initdb.d/setup_database.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+volumes:
+  mysql_data:

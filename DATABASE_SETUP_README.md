@@ -101,7 +101,7 @@ After setup, you can test the application with these credentials:
 - Email: fatma.khalil@nu.edu.eg, Password: password123
 - Email: ali.hassan@nu.edu.eg, Password: password123
 
-## Notes
+## Important Notes
 - All data is fictional but realistic for testing purposes
 - Egyptian addresses and phone numbers follow local formats
 - Transaction amounts reflect typical Egyptian spending patterns

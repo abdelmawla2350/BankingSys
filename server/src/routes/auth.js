@@ -7,7 +7,7 @@ const router = express.Router()
 
 // Login endpoint
 router.post('/login', [
-  body('email').isEmail().normalizeEmail(),
+  body('username').notEmpty().trim(),
   body('password').notEmpty()
 ], async (req, res) => {
   try {
@@ -21,9 +21,9 @@ router.post('/login', [
       })
     }
 
-    const { email, password } = req.body
+    const { username, password } = req.body
 
-    const result = await authenticateUser(email, password)
+    const result = await authenticateUser(username, password)
 
     if (!result.success) {
       return res.status(401).json({

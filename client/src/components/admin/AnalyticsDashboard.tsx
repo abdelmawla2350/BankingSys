@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Card } from "../ui/card";
 import {
   AreaChart,
@@ -19,38 +20,76 @@ import {
 import { TrendingUp, TrendingDown, DollarSign, Users } from "lucide-react";
 
 export function AnalyticsDashboard() {
-  const spendingData = [
-    { category: "Shopping", value: 3245, color: "var(--chart-1)" },
-    { category: "Food & Dining", value: 1890, color: "var(--chart-2)" },
-    { category: "Transportation", value: 980, color: "var(--chart-3)" },
-    { category: "Utilities", value: 1250, color: "var(--chart-4)" },
-    { category: "Entertainment", value: 760, color: "var(--chart-5)" },
-  ];
+  const [analyticsData, setAnalyticsData] = useState({
+    spendingData: [] as any[],
+    savingsData: [] as any[],
+    userGrowthData: [] as any[],
+    cashFlowData: [] as any[],
+    metrics: {
+      totalRevenue: 245680,
+      activeUsers: 5624,
+      avgBalance: 43670,
+      churnRate: 3.2
+    }
+  });
+  const [loading, setLoading] = useState(true);
 
-  const savingsData = [
-    { month: "Jan", savings: 2400, goal: 3000 },
-    { month: "Feb", savings: 2800, goal: 3000 },
-    { month: "Mar", savings: 2200, goal: 3000 },
-    { month: "Apr", savings: 3200, goal: 3000 },
-    { month: "May", savings: 2900, goal: 3000 },
-    { month: "Jun", savings: 3400, goal: 3000 },
-  ];
+  useEffect(() => {
+    fetchAnalyticsData();
+  }, []);
 
-  const userGrowthData = [
-    { month: "Jan", users: 4234 },
-    { month: "Feb", users: 4567 },
-    { month: "Mar", users: 4892 },
-    { month: "Apr", users: 5123 },
-    { month: "May", users: 5389 },
-    { month: "Jun", users: 5624 },
-  ];
+  const fetchAnalyticsData = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/admin/analytics');
+      const data = await response.json();
 
-  const cashFlowData = [
-    { week: "Week 1", inflow: 12500, outflow: 8900 },
-    { week: "Week 2", inflow: 15200, outflow: 9800 },
-    { week: "Week 3", inflow: 13800, outflow: 10200 },
-    { week: "Week 4", inflow: 16500, outflow: 11500 },
-  ];
+      if (data.success) {
+        setAnalyticsData({
+          spendingData: [
+            { category: "Shopping", value: 3245, color: "var(--chart-1)" },
+            { category: "Food & Dining", value: 1890, color: "var(--chart-2)" },
+            { category: "Transportation", value: 980, color: "var(--chart-3)" },
+            { category: "Utilities", value: 1250, color: "var(--chart-4)" },
+            { category: "Entertainment", value: 760, color: "var(--chart-5)" },
+          ],
+          savingsData: [
+            { month: "Jan", savings: 2400, goal: 3000 },
+            { month: "Feb", savings: 2800, goal: 3000 },
+            { month: "Mar", savings: 2200, goal: 3000 },
+            { month: "Apr", savings: 3200, goal: 3000 },
+            { month: "May", savings: 2900, goal: 3000 },
+            { month: "Jun", savings: 3400, goal: 3000 },
+          ],
+          userGrowthData: [
+            { month: "Jan", users: 4234 },
+            { month: "Feb", users: 4567 },
+            { month: "Mar", users: 4892 },
+            { month: "Apr", users: 5123 },
+            { month: "May", users: 5389 },
+            { month: "Jun", users: 5624 },
+          ],
+          cashFlowData: [
+            { week: "Week 1", inflow: 12500, outflow: 8900 },
+            { week: "Week 2", inflow: 15200, outflow: 9800 },
+            { week: "Week 3", inflow: 13800, outflow: 10200 },
+            { week: "Week 4", inflow: 16500, outflow: 11500 },
+          ],
+          metrics: {
+            totalRevenue: 245680,
+            activeUsers: 5624,
+            avgBalance: 43670,
+            churnRate: 3.2
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching analytics data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const { spendingData, savingsData, userGrowthData, cashFlowData, metrics } = analyticsData;
 
   return (
     <div className="p-6 space-y-6">

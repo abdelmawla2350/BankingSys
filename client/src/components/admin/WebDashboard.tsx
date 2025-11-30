@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { StatCard } from "../shared/StatCard";
 import { TransactionItem } from "../shared/TransactionItem";
 import { Card } from "../ui/card";
@@ -5,31 +6,39 @@ import { Users, DollarSign, TrendingUp, Activity, ArrowUpRight, ArrowDownRight }
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 
 export function WebDashboard() {
-  const revenueData = [
-    { month: "Jan", revenue: 45000, expenses: 32000 },
-    { month: "Feb", revenue: 52000, expenses: 35000 },
-    { month: "Mar", revenue: 48000, expenses: 33000 },
-    { month: "Apr", revenue: 61000, expenses: 38000 },
-    { month: "May", revenue: 55000, expenses: 36000 },
-    { month: "Jun", revenue: 67000, expenses: 40000 },
-  ];
+  const [dashboardData, setDashboardData] = useState({
+    revenueData: [] as any[],
+    transactionVolumeData: [] as any[],
+    recentTransactions: [] as any[],
+    stats: {
+      totalUsers: 0,
+      totalBalance: 0,
+      transactionsToday: 0,
+      revenue: 0
+    }
+  });
+  const [loading, setLoading] = useState(true);
 
-  const transactionVolumeData = [
-    { day: "Mon", transactions: 234 },
-    { day: "Tue", transactions: 289 },
-    { day: "Wed", transactions: 312 },
-    { day: "Thu", transactions: 278 },
-    { day: "Fri", transactions: 345 },
-    { day: "Sat", transactions: 198 },
-    { day: "Sun", transactions: 156 },
-  ];
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
 
-  const recentTransactions = [
-    { id: 1, title: "mohamed.ahmed - Deposit", date: "2 minutes ago", amount: 2500.00, type: "income" as const },
-    { id: 2, title: "fatma.khalil - Transfer", date: "15 minutes ago", amount: 850.00, type: "expense" as const },
-    { id: 3, title: "ali.hassan - Withdrawal", date: "1 hour ago", amount: 1200.00, type: "expense" as const },
-    { id: 4, title: "sara.mahmoud - Deposit", date: "2 hours ago", amount: 3400.00, type: "income" as const },
-  ];
+  const fetchDashboardData = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/admin/dashboard');
+      const data = await response.json();
+
+      if (data.success) {
+        setDashboardData(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const { revenueData, transactionVolumeData, recentTransactions, stats } = dashboardData;
 
   return (
     <div className="p-6 space-y-6">
@@ -43,28 +52,28 @@ export function WebDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
           title="Total Users"
-          value="54,239"
+          value={stats.totalUsers.toLocaleString()}
           change="+12.5%"
           icon={Users}
           trend="up"
         />
         <StatCard
           title="Total Balance"
-          value="$2.45M"
+          value={`$${stats.totalBalance.toLocaleString()}`}
           change="+8.2%"
           icon={DollarSign}
           trend="up"
         />
         <StatCard
           title="Transactions Today"
-          value="1,892"
+          value={stats.transactionsToday.toLocaleString()}
           change="+23.1%"
           icon={Activity}
           trend="up"
         />
         <StatCard
           title="Revenue"
-          value="$67.5K"
+          value={`$${stats.revenue.toLocaleString()}`}
           change="-3.5%"
           icon={TrendingUp}
           trend="down"
@@ -140,7 +149,7 @@ export function WebDashboard() {
             <button className="text-sm text-[var(--primary)] hover:underline">View All</button>
           </div>
           <div className="space-y-2">
-            {recentTransactions.map((transaction) => (
+            {recentTransactions.map((transaction: any) => (
               <TransactionItem key={transaction.id} {...transaction} />
             ))}
           </div>

@@ -5,7 +5,6 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Card } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
-import { users } from "../../data/users";
 
 interface WebLoginProps {
   onLogin?: (role: 'admin' | 'user') => void;
@@ -16,16 +15,31 @@ export function WebLogin({ onLogin }: WebLoginProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    const user = users.find(u => u.username === username && u.password === password);
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (user) {
-      setError("");
-      onLogin?.(user.role);
-    } else {
-      setError("Invalid username or password");
+      const data = await response.json();
+
+      if (data.success) {
+        console.log('Login successful:', data);
+        onLogin?.(data.data.role);
+      } else {
+        console.log('Login failed:', data);
+        setError(data.message || "Invalid username or password");
+      }
+    } catch (error) {
+      setError("Login failed. Please try again.");
+      console.error('Login error:', error);
     }
   };
 
@@ -81,7 +95,7 @@ export function WebLogin({ onLogin }: WebLoginProps) {
               <Input
                 id="username"
                 type="text"
-                placeholder="admin123 or user123"
+                placeholder="masteruser or user123"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="bg-input-background h-12"

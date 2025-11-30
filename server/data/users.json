@@ -1,0 +1,26 @@
+[
+  {
+    "id": "user_123",
+    "username": "masteruser",
+    "password": "masterpass@123",
+    "email": "admin@nubank.com",
+    "first_name": "Admin",
+    "last_name": "User",
+    "role": "admin",
+    "status": "ACTIVE",
+    "created_at": "2023-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "user_456",
+    "username": "user123",
+    "password": "userpass@123",
+    "email": "user@nubank.com",
+    "first_name": "Regular",
+    "last_name": "User",
+    "role": "user",
+    "status": "ACTIVE",
+    "created_at": "2023-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  }
+]

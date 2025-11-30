@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -23,72 +23,27 @@ import { Search, Download, Filter, ArrowUpRight, ArrowDownLeft } from "lucide-re
 export function TransactionsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
+  const [transactions, setTransactions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const transactions = [
-    {
-      id: "TXN001234",
-      user: "youssef.ibrahim",
-      type: "deposit",
-      amount: 2500.00,
-      status: "completed",
-      date: "Oct 22, 2024 09:30",
-      method: "Bank Transfer",
-    },
-    {
-      id: "TXN001235",
-      user: "nour.el-sayedn",
-      type: "withdrawal",
-      amount: 850.00,
-      status: "completed",
-      date: "Oct 22, 2024 09:15",
-      method: "ATM",
-    },
-    {
-      id: "TXN001236",
-      user: "omar.farouk",
-      type: "transfer",
-      amount: 1200.00,
-      status: "pending",
-      date: "Oct 22, 2024 08:45",
-      method: "Internal",
-    },
-    {
-      id: "TXN001237",
-      user: "aya.mostafa",
-      type: "deposit",
-      amount: 3400.00,
-      status: "completed",
-      date: "Oct 22, 2024 08:20",
-      method: "Check",
-    },
-    {
-      id: "TXN001238",
-      user: "karim.abdullah",
-      type: "withdrawal",
-      amount: 500.00,
-      status: "failed",
-      date: "Oct 22, 2024 07:55",
-      method: "ATM",
-    },
-    {
-      id: "TXN001239",
-      user: "layla.hussein",
-      type: "transfer",
-      amount: 2100.00,
-      status: "completed",
-      date: "Oct 21, 2024 18:30",
-      method: "Wire",
-    },
-    {
-      id: "TXN001240",
-      user: "hassan.zaki",
-      type: "deposit",
-      amount: 5600.00,
-      status: "completed",
-      date: "Oct 21, 2024 16:45",
-      method: "Bank Transfer",
-    },
-  ];
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
+
+  const fetchTransactions = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/admin/transactions');
+      const data = await response.json();
+
+      if (data.success) {
+        setTransactions(data.data.transactions);
+      }
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="p-6 space-y-6">

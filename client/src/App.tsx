@@ -23,8 +23,10 @@ export default function App() {
   const [userRole, setUserRole] = useState<'admin' | 'user' | null>(null);
 
   const handleLogin = (role: 'admin' | 'user') => {
+    console.log('handleLogin called with role:', role);
     setUserRole(role);
     setCurrentScreen("dashboard");
+    console.log('State updated: userRole =', role, 'currentScreen = dashboard');
   };
 
   const handleNavigate = (screen: string) => {

@@ -1,25 +1,31 @@
 import express from 'express'
+import {
+  getUsers,
+  getUser,
+  updateUserController,
+  deleteUserController,
+  getUserProfileController,
+  updateUserProfileController
+} from '../controllers/userController.js'
+
 const router = express.Router()
 
-// Placeholder routes - to be implemented
-router.get('/', (req, res) => {
-  res.json({ message: 'Get all users endpoint - to be implemented' })
-})
+// Get all users (Admin only)
+router.get('/', getUsers)
 
-router.get('/:id', (req, res) => {
-  res.json({ message: 'Get user by ID endpoint - to be implemented' })
-})
+// Get user by ID
+router.get('/:id', getUser)
 
-router.post('/', (req, res) => {
-  res.json({ message: 'Create user endpoint - to be implemented' })
-})
+// Update user
+router.put('/:id', updateUserController)
 
-router.put('/:id', (req, res) => {
-  res.json({ message: 'Update user endpoint - to be implemented' })
-})
+// Delete user
+router.delete('/:id', deleteUserController)
 
-router.delete('/:id', (req, res) => {
-  res.json({ message: 'Delete user endpoint - to be implemented' })
-})
+// Get user profile
+router.get('/:id/profile', getUserProfileController)
+
+// Update user profile
+router.put('/:id/profile', updateUserProfileController)
 
 export default router

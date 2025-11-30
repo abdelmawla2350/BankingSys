@@ -2,7 +2,7 @@ import { StatCard } from "../shared/StatCard";
 import { TransactionItem } from "../shared/TransactionItem";
 import { Card } from "../ui/card";
 import { Users, DollarSign, TrendingUp, Activity, ArrowUpRight, ArrowDownRight } from "lucide-react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 
 export function WebDashboard() {
   const revenueData = [

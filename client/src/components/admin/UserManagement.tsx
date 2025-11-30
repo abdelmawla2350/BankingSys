@@ -18,7 +18,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Search, Plus, MoreVertical, UserPlus, Filter } from "lucide-react";
+import { Search, MoreVertical, UserPlus, Filter } from "lucide-react";
 
 export function UserManagement() {
   const [searchQuery, setSearchQuery] = useState("");

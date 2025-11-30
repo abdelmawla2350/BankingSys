@@ -1,6 +1,5 @@
 import React from 'react';
 import { BankLogo } from "../shared/BankLogo";
-import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,

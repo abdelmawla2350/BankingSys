@@ -27,7 +27,7 @@ export function TransactionsPage() {
   const transactions = [
     {
       id: "TXN001234",
-      user: "John Smith",
+      user: "youssef.ibrahim",
       type: "deposit",
       amount: 2500.00,
       status: "completed",
@@ -36,7 +36,7 @@ export function TransactionsPage() {
     },
     {
       id: "TXN001235",
-      user: "Sarah Johnson",
+      user: "nour.el-sayedn",
       type: "withdrawal",
       amount: 850.00,
       status: "completed",
@@ -45,7 +45,7 @@ export function TransactionsPage() {
     },
     {
       id: "TXN001236",
-      user: "Mike Wilson",
+      user: "omar.farouk",
       type: "transfer",
       amount: 1200.00,
       status: "pending",
@@ -54,7 +54,7 @@ export function TransactionsPage() {
     },
     {
       id: "TXN001237",
-      user: "Emma Davis",
+      user: "aya.mostafa",
       type: "deposit",
       amount: 3400.00,
       status: "completed",
@@ -63,7 +63,7 @@ export function TransactionsPage() {
     },
     {
       id: "TXN001238",
-      user: "Robert Brown",
+      user: "karim.abdullah",
       type: "withdrawal",
       amount: 500.00,
       status: "failed",
@@ -72,7 +72,7 @@ export function TransactionsPage() {
     },
     {
       id: "TXN001239",
-      user: "Lisa Anderson",
+      user: "layla.hussein",
       type: "transfer",
       amount: 2100.00,
       status: "completed",
@@ -81,7 +81,7 @@ export function TransactionsPage() {
     },
     {
       id: "TXN001240",
-      user: "David Martinez",
+      user: "hassan.zaki",
       type: "deposit",
       amount: 5600.00,
       status: "completed",

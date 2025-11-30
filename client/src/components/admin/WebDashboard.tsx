@@ -25,10 +25,10 @@ export function WebDashboard() {
   ];
 
   const recentTransactions = [
-    { id: 1, title: "John Smith - Deposit", date: "2 minutes ago", amount: 2500.00, type: "income" as const },
-    { id: 2, title: "Sarah Johnson - Transfer", date: "15 minutes ago", amount: 850.00, type: "expense" as const },
-    { id: 3, title: "Mike Wilson - Withdrawal", date: "1 hour ago", amount: 1200.00, type: "expense" as const },
-    { id: 4, title: "Emma Davis - Deposit", date: "2 hours ago", amount: 3400.00, type: "income" as const },
+    { id: 1, title: "mohamed.ahmed - Deposit", date: "2 minutes ago", amount: 2500.00, type: "income" as const },
+    { id: 2, title: "fatma.khalil - Transfer", date: "15 minutes ago", amount: 850.00, type: "expense" as const },
+    { id: 3, title: "ali.hassan - Withdrawal", date: "1 hour ago", amount: 1200.00, type: "expense" as const },
+    { id: 4, title: "sara.mahmoud - Deposit", date: "2 hours ago", amount: 3400.00, type: "income" as const },
   ];
 
   return (

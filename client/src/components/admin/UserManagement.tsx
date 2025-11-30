@@ -26,8 +26,8 @@ export function UserManagement() {
   const users = [
     {
       id: 1,
-      name: "John Smith",
-      email: "john.smith@email.com",
+      name: "mohamed.ahmed",
+      email: "mohamed.ahmed@email.com",
       balance: 24567.89,
       status: "active",
       joinDate: "Jan 15, 2024",
@@ -35,8 +35,8 @@ export function UserManagement() {
     },
     {
       id: 2,
-      name: "Sarah Johnson",
-      email: "sarah.j@email.com",
+      name: "fatma.khalil",
+      email: "fatma.khalil@email.com",
       balance: 18234.50,
       status: "active",
       joinDate: "Feb 20, 2024",
@@ -44,8 +44,8 @@ export function UserManagement() {
     },
     {
       id: 3,
-      name: "Mike Wilson",
-      email: "mike.w@email.com",
+      name: "ali.hassan",
+      email: "ali.hassan@email.com",
       balance: 45123.00,
       status: "active",
       joinDate: "Jan 5, 2024",
@@ -53,8 +53,8 @@ export function UserManagement() {
     },
     {
       id: 4,
-      name: "Emma Davis",
-      email: "emma.davis@email.com",
+      name: "sara.mahmoud",
+      email: "sara.mahmoud@email.com",
       balance: 9876.34,
       status: "inactive",
       joinDate: "Mar 10, 2024",
@@ -62,8 +62,8 @@ export function UserManagement() {
     },
     {
       id: 5,
-      name: "Robert Brown",
-      email: "r.brown@email.com",
+      name: "youssef.ibrahim",
+      email: "youssef.ibrahim@email.com",
       balance: 32890.12,
       status: "active",
       joinDate: "Dec 28, 2023",
@@ -71,8 +71,8 @@ export function UserManagement() {
     },
     {
       id: 6,
-      name: "Lisa Anderson",
-      email: "lisa.a@email.com",
+      name: "nour.el-sayed",
+      email: "nour.el-sayed@email.com",
       balance: 15678.90,
       status: "pending",
       joinDate: "Oct 15, 2024",
